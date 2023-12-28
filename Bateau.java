@@ -13,30 +13,30 @@ import javafx.scene.Parent;
 public class Bateau extends Parent{
     
     // The attributes longueurinit is the original length of the ship when it is created
-    private int longueurinit;
+    private int initialLen;
     // The boolean vertical is True if the ship is vertical, False if it is horizontal
     private boolean vertical = true;
     /**
      * The attribute longueurrestante is the remaining length of the ship between 0 and longueurinit
-     * @see Bateau#diminuerLongueurBateau() 
+     * @see Bateau#diminuateLenShip() 
      * @see Bateau#getLongueurrestante() 
     */
-    private int longueurrestante;
+    private int remainingLen;
     // The string nom is the name of the ship
-    private String nom;
+    private String name;
     private List<Cellule> lcell; // Cell list
     
     /**
      * This is the Bateau constructor.
      * He takes 2 parameters :
-     * @param longueurinit description of the longueurinit parameter
+     * @param initialLen description of the longueurinit parameter
      * @param vertical boolean that indicates vertical or horizontal
      */
-    public Bateau(int longueurinit, boolean vertical){
-        setLongueurinit(longueurinit); // Allows to go through the verification of setLongueurinit
+    public Bateau(int initialLen, boolean vertical){
+        setInitialLen(initialLen); // Allows to go through the verification of setLongueurinit
         setVertical(vertical); 
-        setLongueurrestante(longueurinit);
-        nommerBateau(longueurinit);
+        setRemainingLen(initialLen);
+        shipName(initialLen);
         lcell=null; // List of empty cells
     }
     
@@ -45,24 +45,24 @@ public class Bateau extends Parent{
      * @return The initial length
      */
     
-    public int getLongueurinit(){
-        return longueurinit;
+    public int getInitialLen(){
+        return initialLen;
     }
     
     /**
      * This setter allows to assign a value to the initial length of the ship
-     * @param longueurinit2 
+     * @param initialLen2 
      */
     
-    public void setLongueurinit(int longueurinit2){
+    public void setInitialLen(int initialLen2){
         // Takes a length between 2 and 5
-        if (longueurinit2>=2 && longueurinit2<=5){
-            longueurinit=longueurinit2;
+        if (initialLen2>=2 && initialLen2<=5){
+            initialLen=initialLen2;
         }
     }
     /**
      * This getter allows to return a boolean indicating if the ship is vertical
-     * @return 
+     * @return vertical
      */
     public boolean getVertical(){
         return vertical;
@@ -80,39 +80,39 @@ public class Bateau extends Parent{
      * This getter allows to return the remaining length of the ship
      * @return remaining length of the ship
      */
-    public int getLongueurRestante(){
-        return longueurrestante;
+    public int getRemainingLen(){
+        return remainingLen;
     }
     
     /**
      * This setter allows to define the remaining length of a ship
      * verifiying that the length is between 2 and 5.
-     * @param longueurrestante2 
+     * @param remainingLen2 
      */
     
-    public void setLongueurrestante(int longueurrestante2){
-        if (longueurrestante2>=2 && longueurrestante2<=5){
-            longueurrestante=longueurrestante2;
+    public void setRemainingLen(int remainingLen2){
+        if (remainingLen2>=2 && remainingLen2<=5){
+            remainingLen=remainingLen2;
         }
     }
 
     /** 
      * This getter allows to return the name of the ship
-     * @return nom, the name of the ship
+     * @return name, the name of the ship
      */
     
-    public String getNom(){
-        return nom;
+    public String getName(){
+        return name;
     }
 
     /** 
      * This setter allows to define the name of the ship
-     * @param nom2 
+     * @param name2 
      */
     
-    public void setNom(String nom2){
-        if (nom2!=null && nom2.length()>0){
-            nom=nom2;
+    public void setName(String name2){
+        if (name2!=null && name2.length()>0){
+            name=name2;
         }
     }
 
@@ -138,16 +138,16 @@ public class Bateau extends Parent{
     /**
      * This method allows to decrement the length of a ship
      */
-    public void diminuerLongueurBateau(){
-        longueurrestante--;
+    public void diminuateLenShip(){
+        remainingLen--;
     }
 
     /** 
      * This method allows to check if a ship has a non-zero remaining length 
      * @return True if the ship has a non-zero remaining length 
      */
-    public boolean bateauEnVie(){
-        return longueurrestante>0;
+    public boolean shipAlive(){
+        return remainingLen>0;
     }
 
     /**
@@ -157,22 +157,22 @@ public class Bateau extends Parent{
      */
     
     // No need of default because it is not possible that the length is different from 2, 3, 4 or 5 thanks to the setter
-    public void nommerBateau(int i){
+    public void shipName(int i){
         switch(i){
             case 2:
-                setNom("Torpedo ship of 2 squares");
+                setName("Torpedo ship of 2 squares");
                 break;
             case 3:
-                setNom("Destroyer of 3 squares");
+                setName("Destroyer of 3 squares");
                 break;
             case 4:
-                setNom("Cruiser of 4 squares");
+                setName("Cruiser of 4 squares");
                 break;
             case 5:
-                setNom("Aircraft carrier of 5 squares");
+                setName("Aircraft carrier of 5 squares");
                 break;
             default :
-                setNom("Unconventional ship");
+                setName("Unconventional ship");
                 break;
         }
     }

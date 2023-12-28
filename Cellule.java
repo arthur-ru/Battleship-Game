@@ -11,22 +11,22 @@ import javafx.scene.shape.Rectangle;
 
 public class Cellule extends Rectangle{
     public int x,y; // The coordinates are public to access them in main
-    private Bateau bateau; // The ship 
-    private boolean dejaJoue=false; // A boolean to know if we have already played this cell before
-    private Grille grille; // The grid of the cell
+    private Bateau ship; // The ship 
+    private boolean alreadyPlayed=false; // A boolean to know if we have already played this cell before
+    private Grille grid; // The grid of the cell
     
     /**
      * The Cellule constructor creates a Cellule with 3 parameters. 
      * @param x the x coordinate
      * @param y the y coordinate
-     * @param grille the grid on which the cell will be placed
+     * @param grid the grid on which the cell will be placed
      */
     
-    public Cellule(int x, int y, Grille grille){
+    public Cellule(int x, int y, Grille grid){
         super(40,40);
         setx(x);
         sety(y);
-        setGrille(grille);
+        setGrid(grid);
         setFill(Color.WHITESMOKE); // Base color
         setStroke(Color.BLACK);
     }
@@ -71,17 +71,17 @@ public class Cellule extends Rectangle{
      * This getter returns the Bateau of the cell
      * @return 
      */
-    public Bateau getBateau(){
-        return bateau;
+    public Bateau getShip(){
+        return ship;
     }
 
     /**
      * This setter allows to assign a ship to a cell
-     * @param bateau2 
+     * @param ship2 
      */
-    public void setBateau(Bateau bateau2){
-        if (bateau2!=null){
-            bateau=bateau2;
+    public void setShip(Bateau ship2){
+        if (ship2!=null){
+            ship=ship2;
         }
     }
 
@@ -90,34 +90,34 @@ public class Cellule extends Rectangle{
      * @return dejaJoue a boolean
      */
     
-    public boolean getDejaJoue(){
-        return dejaJoue;
+    public boolean getAlreadyPlayed(){
+        return alreadyPlayed;
     }
 
     /**
      * This setter allows to define by a boolean if the cell has already been played
-     * @param dejaJoue2 
+     * @param alreadyPlayed2 
      */
     
-    public void setDejaJoue(boolean dejaJoue2){
-        dejaJoue=dejaJoue2;
+    public void setAlreadyPlayed(boolean alreadyPlayed2){
+        alreadyPlayed=alreadyPlayed2;
     }
 
     /**
      * This getter returns the grid
      * @return la grille 
      */
-    public Grille getGrille(){
-        return grille;
+    public Grille getGrid(){
+        return grid;
     }
     
     /**
      * This setter allows to define a grid to the cell
-     * @param grille2 
+     * @param grid2 
      */    
-    public void setGrille(Grille grille2){
-        if (grille2!=null){
-            grille=grille2;
+    public void setGrid(Grille grid2){
+        if (grid2!=null){
+            grid=grid2;
         }
     }
 
@@ -129,28 +129,28 @@ public class Cellule extends Rectangle{
      * Color all the cells of the ship in red if the ship has been sunk by the shot.
      * @return un boolean true si un bateau a été touché ou coulé 
      */
-    public boolean tirerSurCellule(){
-        if (getDejaJoue())
+    public boolean shootOnCell(){
+        if (getAlreadyPlayed())
                 // If True it means that the cell has already been played with the shoot() method
                 return false;
-        dejaJoue = true;
+        alreadyPlayed = true;
         setFill(Color.BLUE);
-        if (bateau == null){
+        if (ship == null){
             System.out.println("--- Too bad, you missed!");
         }
-        if (bateau !=null){
-            bateau.diminuerLongueurBateau();
+        if (ship !=null){
+            ship.diminuateLenShip();
             setFill(Color.ORANGE);
             System.out.println("--- Ship hit!");
             
-            if (!bateau.bateauEnVie()){
-                grille.setNbBateaux(grille.getNbBateaux()-1);
-                for (Cellule cellule:bateau.getLcell()){
+            if (!ship.shipAlive()){
+                grid.setNbShips(grid.getNbShips()-1);
+                for (Cellule cellule:ship.getLcell()){
                     cellule.setFill(Color.RED);
                 }
                 
-                System.out.println("--- A "+bateau.getNom() +" has been sunk!");
-                System.out.println("There is "+grille.getNbBateaux()+" ships remaining to sink.");
+                System.out.println("--- A "+ship.getName() +" has been sunk!");
+                System.out.println("There is "+grid.getNbShips()+" ships remaining to sink.");
             }
             return true;
         }
