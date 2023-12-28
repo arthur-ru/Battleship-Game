@@ -1,30 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bataillenavaleapo;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 /**
- * Cette classe Cellule permet de créer des objets Cellule et d'executer les méthodes associées
- * Une cellule est le composant de base d'une grille 
+ * This class Cellule allows to create Cellule objects and to execute associated methods
+ * A cell is the basic component of a grid
  * @author Arthur Rubio
  */
 
 public class Cellule extends Rectangle{
-    public int x,y; //les coordos sont publiques pour y accéder dans main 
-    private Bateau bateau; // le bateau 
-    private boolean dejaJoue=false; //un boolean pour savoir si on a deja joué cette cellule 
-    private Grille grille; //la grille à laquelle appartient la cellule
+    public int x,y; // The coordinates are public to access them in main
+    private Bateau bateau; // The ship 
+    private boolean dejaJoue=false; // A boolean to know if we have already played this cell before
+    private Grille grille; // The grid of the cell
     
     /**
-     * Le constructeur de Cellule crée une Cellule avec 3 paramètres. 
-     * @param x la coordo x 
-     * @param y la coordo y 
-     * @param grille la grille sur laquelle sera placée la cellule
+     * The Cellule constructor creates a Cellule with 3 parameters. 
+     * @param x the x coordinate
+     * @param y the y coordinate
+     * @param grille the grid on which the cell will be placed
      */
     
     public Cellule(int x, int y, Grille grille){
@@ -32,20 +27,20 @@ public class Cellule extends Rectangle{
         setx(x);
         sety(y);
         setGrille(grille);
-        setFill(Color.WHITESMOKE); //couleur de base Blanc
+        setFill(Color.WHITESMOKE); // Base color
         setStroke(Color.BLACK);
     }
     
-    /** Ce getter renvoie la coordo x 
-     * 
-     * @return x la coordo x 
+    /** 
+     * This getter returns the x coordinate
+     * @return x the x coordinate
      */
-    
-    public int getx(){ //pas getX car existe déjà dans Rectangle
+    public int getx(){ // not getX because it already exists in Rectangle
         return x;
     }
+
     /**
-     * Ce setter definit la coordo x en vérifiant sa validité 
+     * This setter defines the x coordinate by checking its validity
      * @param x2 
      */
     public void setx(int x2){
@@ -53,15 +48,17 @@ public class Cellule extends Rectangle{
             x=x2;
         }
     }
-    /** Ce getter renvoie la coordo y 
-     * 
-     * @return y la coordo
+
+    /** 
+     * This getter returns the y coordinate
+     * @return y the y coordinate
      */
     public int gety(){
         return y;
     }
+
     /**
-     * Ce setter definit la coordo y en vérifiant sa validité 
+     * This setter defines the y coordinate by checking its validity
      * @param y2 
      */
     public void sety(int y2){
@@ -69,15 +66,17 @@ public class Cellule extends Rectangle{
             y=y2;
         }
     }
+
     /**
-     * Ce getter retourne le Bateau de la cellule 
+     * This getter returns the Bateau of the cell
      * @return 
      */
     public Bateau getBateau(){
         return bateau;
     }
+
     /**
-     * Ce setter permet d'attribuer un bateau à une cellule 
+     * This setter allows to assign a ship to a cell
      * @param bateau2 
      */
     public void setBateau(Bateau bateau2){
@@ -85,24 +84,27 @@ public class Cellule extends Rectangle{
             bateau=bateau2;
         }
     }
+
     /** 
-     * Ce getter renvoie true si la cellule a déjà été jouée 
-     * @return dejaJoue un boolean
+     * This getter returns true if the cell has already been played
+     * @return dejaJoue a boolean
      */
     
     public boolean getDejaJoue(){
         return dejaJoue;
     }
+
     /**
-     * Ce setter permet de définir par un boolean si la cellule a déjà été jouée
+     * This setter allows to define by a boolean if the cell has already been played
      * @param dejaJoue2 
      */
     
     public void setDejaJoue(boolean dejaJoue2){
         dejaJoue=dejaJoue2;
     }
+
     /**
-     * Ce gettter retourne la grille 
+     * This getter returns the grid
      * @return la grille 
      */
     public Grille getGrille(){
@@ -110,7 +112,7 @@ public class Cellule extends Rectangle{
     }
     
     /**
-     * Ce setter permet de définir une grille à la cellule
+     * This setter allows to define a grid to the cell
      * @param grille2 
      */    
     public void setGrille(Grille grille2){
@@ -118,28 +120,28 @@ public class Cellule extends Rectangle{
             grille=grille2;
         }
     }
+
     /**
-     * Cette méthode permet de tirer sur une cellule.
-     * Elle regarde s'il y a un bateau sur la cellule.
-     * Colore la cellule en bleu si non.
-     * Colore la cellule en orange si oui.
-     * Colore toutes les cellules du bateau en rouge si le bateau a été coulé par le tir.
+     * This method allows to shoot on a cell.
+     * She looks if there is a ship on the cell.
+     * Color the cell in blue if not.
+     * Color the cell in orange if yes.
+     * Color all the cells of the ship in red if the ship has been sunk by the shot.
      * @return un boolean true si un bateau a été touché ou coulé 
      */
     public boolean tirerSurCellule(){
         if (getDejaJoue())
-                //si true ca veut dire que la cellule a deja ete jouee avec la methode shoot()
+                // If True it means that the cell has already been played with the shoot() method
                 return false;
         dejaJoue = true;
         setFill(Color.BLUE);
-        //System.out.println("Voyons voir ce qui a été touché");
         if (bateau == null){
-            System.out.println("--- Dommage, à l'eau !");
+            System.out.println("--- Too bad, you missed!");
         }
         if (bateau !=null){
             bateau.diminuerLongueurBateau();
             setFill(Color.ORANGE);
-            System.out.println("--- Bateau touché");
+            System.out.println("--- Ship hit!");
             
             if (!bateau.bateauEnVie()){
                 grille.setNbBateaux(grille.getNbBateaux()-1);
@@ -147,14 +149,11 @@ public class Cellule extends Rectangle{
                     cellule.setFill(Color.RED);
                 }
                 
-                System.out.println("--- Un "+bateau.getNom() +" a été coulé");
-                System.out.println("Il reste "+grille.getNbBateaux()+" bateaux à couler sur la grille");
+                System.out.println("--- A "+bateau.getNom() +" has been sunk!");
+                System.out.println("There is "+grille.getNbBateaux()+" ships remaining to sink.");
             }
             return true;
-           
         }
-        
         return false;
     }
 }
-

@@ -1,62 +1,48 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bataillenavaleapo;
 
 import java.util.List;
 import javafx.scene.Parent;
 
 /**
- * La classe Bateau permet de définir des bateaux et de faire appel à des méthodes associées.
- * Elle permet de créer des objets de la classe Bateau et d'éxecuter les méthodes associées. 
+ * The Bateau class allows to create ships and to call associated methods.
+ * She allows to create objects of the Bateau class and to execute associated methods.
  * 
  * @author Arthur Rubio
  */
 
 public class Bateau extends Parent{
     
-    /**
-     * L'attribut longueurinit est la longueur initiale du bateau lors de sa création
-     */
+    // The attributes longueurinit is the original length of the ship when it is created
     private int longueurinit;
-    /**
-     * Le boolean vertical est vrai si le bateau est vertical, faux s'il est horizontal 
-    */
+    // The boolean vertical is True if the ship is vertical, False if it is horizontal
     private boolean vertical = true;
     /**
-     * L'attribut longueurrestante est la longueur restante du bateau comprise entre 0 et longueurinit
+     * The attribute longueurrestante is the remaining length of the ship between 0 and longueurinit
      * @see Bateau#diminuerLongueurBateau() 
      * @see Bateau#getLongueurrestante() 
     */
     private int longueurrestante;
-    /**
-     * La chaine de caractères nom est le nom du bateau 
-     */
+    // The string nom is the name of the ship
     private String nom;
-    private List<Cellule> lcell; //liste de cellules
+    private List<Cellule> lcell; // Cell list
     
     /**
-     * Ceci est le constructeur de Bateau. 
-     * Il prend en paramètres : 
-     * @param longueurinit description du paramètre longueurinit
-     * @param vertical un boolean qui indique vertical ou horizontal 
-     * 
+     * This is the Bateau constructor.
+     * He takes 2 parameters :
+     * @param longueurinit description of the longueurinit parameter
+     * @param vertical boolean that indicates vertical or horizontal
      */
     public Bateau(int longueurinit, boolean vertical){
-        
-        //code a executer lors du constructeur
-        setLongueurinit(longueurinit); //permet de passer par la vérification de setLongueurinit
+        setLongueurinit(longueurinit); // Allows to go through the verification of setLongueurinit
         setVertical(vertical); 
         setLongueurrestante(longueurinit);
         nommerBateau(longueurinit);
-        lcell=null; //liste de cellules vide
+        lcell=null; // List of empty cells
     }
     
     /**
-     * Ce getter permet de retourner la longueur initiale
-     * @return La longueur initiale
+     * This getter allows to return the initial length
+     * @return The initial length
      */
     
     public int getLongueurinit(){
@@ -64,40 +50,43 @@ public class Bateau extends Parent{
     }
     
     /**
-     * Ce setter permet d'affecter une valeur à la longueur initiale du bateau 
+     * This setter allows to assign a value to the initial length of the ship
      * @param longueurinit2 
      */
     
     public void setLongueurinit(int longueurinit2){
+        // Takes a length between 2 and 5
         if (longueurinit2>=2 && longueurinit2<=5){
-            //prend une longueur entre 2 et 5 
             longueurinit=longueurinit2;
         }
     }
     /**
-     * Ce getter permet de retourner un boolean indiquant si le bateau est vertical
+     * This getter allows to return a boolean indicating if the ship is vertical
      * @return 
      */
     public boolean getVertical(){
         return vertical;
     }
+
     /**
-     * Ce setter permet de définir si le bateau est vertical 
-     * @param vertical2 un boolean indiquant si  le bateau est vertical 
+     * This setter allows to define if the ship is vertical
+     * @param vertical2 a boolean indicating if the ship is vertical
      */
     public void setVertical(boolean vertical2){
         vertical=vertical2;
     }
+
     /**
-     * Ce getter permet de renvoyer la longueur restante du bateau 
-     * @return longueur restante du bateau 
+     * This getter allows to return the remaining length of the ship
+     * @return remaining length of the ship
      */
     public int getLongueurRestante(){
         return longueurrestante;
     }
     
-    /** Ce setter permet de définir la longueur restante d'un bateau 
-     * en vérifiant que la longueur est comprise entre 2 et 5. 
+    /**
+     * This setter allows to define the remaining length of a ship
+     * verifiying that the length is between 2 and 5.
      * @param longueurrestante2 
      */
     
@@ -106,15 +95,18 @@ public class Bateau extends Parent{
             longueurrestante=longueurrestante2;
         }
     }
+
     /** 
-     * Ce getter permet de renvoyer le nom du bateau 
-     * @return nom , le nom du bateau 
+     * This getter allows to return the name of the ship
+     * @return nom, the name of the ship
      */
     
     public String getNom(){
         return nom;
     }
-    /** Ce setter permet de définit le nom du bateau 
+
+    /** 
+     * This setter allows to define the name of the ship
      * @param nom2 
      */
     
@@ -123,16 +115,18 @@ public class Bateau extends Parent{
             nom=nom2;
         }
     }
+
     /**
-     * Ce getter renvoie une liste de cellules composant le bateau 
+     * This getter returns a list of cells composing the ship
      * @return 
      */
     public List<Cellule> getLcell(){
         return lcell;
     }
+
     /**
-     * Ce setter permet d'attribuer une liste de cellules à un bateau 
-     * @param lcell2 la liste de cellules
+     * This setter allows to assign a list of cells to a ship
+     * @param lcell2 the list of cells
      */
     
     public void setLcell(List<Cellule> lcell2){
@@ -140,44 +134,46 @@ public class Bateau extends Parent{
             lcell=lcell2;
         }
     }
+
     /**
-     * Cette méthode permet de décrémenter la longueur d'un Bateau
-     * 
+     * This method allows to decrement the length of a ship
      */
-    
     public void diminuerLongueurBateau(){
         longueurrestante--;
     }
+
     /** 
-     * Cette méthode permet de vérifier si un bateau a une longueur restante non nulle 
-     * @return true si le bateau a une longueur restante non nulle 
+     * This method allows to check if a ship has a non-zero remaining length 
+     * @return True if the ship has a non-zero remaining length 
      */
     public boolean bateauEnVie(){
         return longueurrestante>0;
     }
+
     /**
      * Cette méthode permet d'attribuer une chaine nom à un bateau selon sa longueur i 
-     * @param i la longueur du bateau 
+     * This method allows to assign a name to a ship according to its length i
+     * @param i length of the ship
      */
     
-    public void nommerBateau(int i){ //pas besoin de default car pas possible que longueur soit différente de 2, 3, 4 ou 5 grâce au setter
+    // No need of default because it is not possible that the length is different from 2, 3, 4 or 5 thanks to the setter
+    public void nommerBateau(int i){
         switch(i){
             case 2:
-                setNom("torpilleur de 2 cases");
+                setNom("Torpedo ship of 2 squares");
                 break;
             case 3:
-                setNom("contre-torpilleur de 3 cases");
+                setNom("Destroyer of 3 squares");
                 break;
             case 4:
-                setNom("croiseur de 4 cases");
+                setNom("Cruiser of 4 squares");
                 break;
             case 5:
-                setNom("porte-avions de 5 cases");
+                setNom("Aircraft carrier of 5 squares");
                 break;
             default :
-                setNom("bateau non conventionnel");
+                setNom("Unconventional ship");
                 break;
         }
     }
 }
-
