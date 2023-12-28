@@ -28,7 +28,7 @@ import java.util.Scanner;
 import javafx.application.*;
 
 /**
- *Cette classe Main définit le jeu de la bataille navale et son interface JavaFX 
+ * This class defines the battleship game and the JavaFX interface
  * @author Arthur Rubio
  */
 
@@ -38,13 +38,13 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic 
+        // TODO code application logic here
         Application.launch(args);
         
     }
     
     /**
-     * Cette méthode permet de créer la fenêtre avec son titre et sa scene 
+     * This method creates the window with its title and its scene 
      * @param primaryStage la scene principale 
      * @throws Exception 
      */
