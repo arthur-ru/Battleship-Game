@@ -29,7 +29,7 @@ To run this game, ensure you have Java and JavaFX installed on your system.
 
 ## Interface
 <p align="center">
-  <img src=".vscode/interface.png" width="250">
+  <img src=".vscode/interface.png" width="500">
 </p>
 <p><i>*Game interface: Player vs AI*</i></p>
 
