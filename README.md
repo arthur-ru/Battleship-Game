@@ -28,7 +28,10 @@ To run this game, ensure you have Java and JavaFX installed on your system.
 - Use the graphical interface to interact with the game.
 
 ## Interface
-![Game interface](.vscode/interface.png)
+<p align="center">
+  <img src=".vscode/interface.png" width="250">
+</p>
+<p><i>*Game interface: Player vs AI*</i></p>
 
 ## Contributing
 Feel free to fork the repository and submit pull requests!
