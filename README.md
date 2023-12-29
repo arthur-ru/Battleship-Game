@@ -1,7 +1,7 @@
 # Java Battleship Game
 
 ## Overview
-This Java project is a Battleship game implementation. It consists of four main classes: `Bateau` (Ship), `Cellule` (Cell), `Grille` (Grid), and `Main`. The game uses JavaFX for the graphical user interface.
+This Java project is a Battleship game implementation. It consists of four main classes: `Bateau` (Ship), `Cellule` (Cell), `Grille` (Grid), and `Main`. The game uses **JavaFX** for the graphical user interface.
 
 ## Files Description
 - `Bateau.java`: Defines the `Bateau` class, responsible for creating ship objects and their associated methods. It includes attributes for the ship's initial length and orientation.
@@ -27,11 +27,13 @@ To run this game, ensure you have Java and JavaFX installed on your system.
 - Place your ships on the grid and try to sink your opponent's fleet.
 - Use the graphical interface to interact with the game.
 
+## Interface
+![Game interface](.vscode/interface.png)
+
 ## Contributing
 Feel free to fork the repository and submit pull requests!
 
 ## License
 This project is licensed under the MIT License - see the LICENSE.md file for details.
 
-### Note
-Modify the paths in the running instructions according to the actual location of your JavaFX SDK.
+Note: Modify the paths in the running instructions according to the actual location of your JavaFX SDK.
